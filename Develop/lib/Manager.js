@@ -1,8 +1,12 @@
+// Code to define and export the Manager class.  This class inherits from Employee.
 var Employee = require("./Employee");
 
 class Manager extends Employee {
   constructor(name, id, email, officeNumber) {
+    // Employee constructors are name , id, email
     super(name, id, email);
+
+    // Constructors unique to Manager
     this.officeNumber = officeNumber;
   }
 
@@ -10,6 +14,7 @@ class Manager extends Employee {
     return this.officeNumber;
   }
 
+  // Override "Employee" role from parent Employee class
   getRole() {
     return "Manager";
   }
