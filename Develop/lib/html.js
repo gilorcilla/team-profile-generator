@@ -12,15 +12,16 @@ const render = (employees) => {
       .filter((employee) => employee.getRole() === "Manager")
       .map((manager) => renderManager(manager))
   );
+
   html.push(
     employees
       .filter((employee) => employee.getRole() === "Engineer")
-      .map((manager) => renderManager(engineer))
+      .map((engineer) => renderEngineer(engineer))
   );
   html.push(
     employees
       .filter((employee) => employee.getRole() === "Intern")
-      .map((manager) => renderManager(intern))
+      .map((intern) => renderIntern(intern))
   );
 
   return renderMain(html.join(""));
