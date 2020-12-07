@@ -129,3 +129,14 @@ function addEngineer() {
       }
     });
 }
+
+function writToFile(filename, data) {
+  fs.writeFile(filename, data, (err) => {
+    if (err) {
+      throw err;
+    }
+    console.log("Successful!!");
+  });
+}
+
+init();
