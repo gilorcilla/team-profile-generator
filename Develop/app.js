@@ -11,7 +11,7 @@ const Intern = require("./lib/Intern");
 const employees = [];
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
-const render = require("./lib/htmlRenderer");
+//const render = require(".Develop/lib/htmlRenderer");
 //onst { inherits } = require("util");
 
 //Manager Created
@@ -75,14 +75,16 @@ function runAgain() {
       message: "Would you like to add another employee?",
     })
     .then(function (addAnother) {
+      console.log(addAnother);
       if (addAnother.again == true) {
         init();
       }
 
       if (addAnother.again == false) {
-        fs.writeFile(outputPath, render(employees), (err) =>
+        fs.writeFileSync(outputPath, render(employees), (err) =>
           err ? console.log(err) : console.log(`Generated ${outputPath}`)
         );
+        console.log("fileGenerated");
       }
     });
 }
@@ -93,20 +95,20 @@ function init() {
       employees.push(
         new Manager(
           answers.name,
+          answers.id,
           answers.email,
-          answers.officeNumber,
-          answers.id
+          answers.officeNumber
         )
       );
     }
     if (answers.role == "Engineer") {
       employees.push(
-        new Engineer(answers.name, answers.email, answers.githu, answers.id)
+        new Engineer(answers.name, answers.id, answers.email, answers.github)
       );
     }
     if (answers.role == "Intern") {
       employees.push(
-        new Intern(answers.name, answers.email, answers.school, answers.id)
+        new Intern(answers.name, answers.id, answers.email, answers.school)
       );
     }
     runAgain();
